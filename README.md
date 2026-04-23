@@ -1,51 +1,114 @@
-flacboi-for-windows
+flacboi
 
-Windows port of flacboi — a simple command-line tool that downloads high-quality FLAC audio and cover art from YouTube and YouTube Music.
+A simple command-line tool that downloads high-quality FLAC audio and thumbnails from YouTube and YouTube Music.
 
+⸻
 
 Features
-URLPaste a YouTube or YouTube Music URL → downloads as FLACSearchType a song name → searches and downloads the top resultPlaylistPaste a playlist URL → downloads the entire playlistCover artSaves thumbnails to a Covers folderLoopRuns in a loop — no need to restart
 
-Setup
-1. Install yt-dlp
-Download yt-dlp.exe from yt-dlp releases and place it in C:\Windows\System32\
-2. Install ffmpeg
-Download from ffmpeg.org and place ffmpeg.exe in C:\Windows\System32\
-3. Create output folders
-batmkdir "%USERPROFILE%\Desktop\YTAudio"
-mkdir "%USERPROFILE%\Desktop\YTAudio\Covers"
-4. Clone and build
-batgit clone https://github.com/raid118/flacboi-for-windows.git
-cd flacboi-for-windows
-g++ -std=c++20 main.cpp -o flacboi
+* Paste a YouTube or YouTube Music URL → downloads audio as FLAC
+* Type a song name → searches YouTube and downloads the top result
+* Paste a playlist URL → downloads the entire playlist
+* Saves thumbnails to a Covers folder
+* Runs in a loop (no need to restart)
+
+⸻
+
+Setup (Windows)
+
+1. Install dependencies
+
+Option A: Using winget
+
+winget install yt-dlp
+winget install Gyan.FFmpeg
+
+Option B: Manual install
+
+* yt-dlp: https://github.com/yt-dlp/yt-dlp
+* ffmpeg: https://www.gyan.dev/ffmpeg/builds/
+
+Make sure both yt-dlp and ffmpeg are added to PATH.
+
+⸻
+
+2. Create output folders
+
+mkdir $env:USERPROFILE\Desktop\YTAudio\Covers
+
+⸻
+
+3. Clone and build
+
+git clone https://github.com/raid118/flacboi.git
+cd flacboi
+g++ -std=c++20 main.cpp -o flacboi.exe
+
+(Or use MSVC if preferred)
+
+⸻
 
 Usage
-batflacboi
-Then enter a song name, YouTube URL, or playlist URL. Type quit to exit.
+
+Run:
+
+flacboi.exe
+
+Then enter:
+
+* A song name
+* A YouTube URL
+* A playlist URL
+
+Type:
+
+quit
+
+to exit.
+
+⸻
 
 Output
-Desktop/
-└── YTAudio/
-    ├── Song Name.flac
-    └── Covers/
-        └── Song Name.jpg
+
+* Audio files → C:\Users\%USERNAME%\Desktop\YTAudio\
+* Thumbnails → C:\Users\%USERNAME%\Desktop\YTAudio\Covers\
+
+⸻
 
 Tips
 
-For square thumbnails, use a YouTube Music link instead of a regular YouTube link
-To move Spotify playlists to YouTube, try TuneMyMusic
+* For 1:1 (square) thumbnails, use a YouTube Music link instead of a regular YouTube video
+* To move Spotify playlists to YouTube or YouTube Music, use:
+    * TuneMyMusic: https://www.tunemymusic.com
 
+⸻
 
-Requirements
+Notes
 
-C++20 compiler
-yt-dlp.exe in C:\Windows\System32\
-ffmpeg.exe in C:\Windows\System32\
+* Requires C++20 (starts_with)
+* Ensure yt-dlp and ffmpeg are installed and accessible via PATH
+* If downloads fail, check your system PATH or executable locations
 
-
-Audio Note
-FLAC is lossless — but playback quality still depends on your output device.
-For best results, use wired headphones or a high-quality Bluetooth codec.
+⸻
 
 Credits
-yt-dlp • ffmpeg • Made by raid118
+
+* yt-dlp
+* ffmpeg
+
+⸻
+
+Audio Note
+
+FLAC files are lossless, but playback quality still depends on your output device.
+
+For best results, use:
+
+* Wired headphones
+* Or a high-quality Bluetooth codec
+
+⸻
+
+Author
+
+Made by raid118
